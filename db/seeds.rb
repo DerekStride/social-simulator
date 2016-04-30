@@ -8,11 +8,11 @@
 
 require 'ffaker'
 
-roles = %i(consumer producer)
+roles = %w(Consumer Producer)
 
-derek = SocialUser.create!(name: 'Derek Stride', role: :consumer)
-human = SocialUser.create!(name: 'Human', role: :consumer)
-zombie = SocialUser.create!(name: 'Zombie', role: :producer)
+derek = Consumer.create!(name: 'Derek Stride')
+human = Producer.create!(name: 'Human')
+zombie = Consumer.create!(name: 'Zombie')
 1000.times do
   SocialUser.create!(name: FFaker::Name.name, role: roles.sample)
 end
@@ -31,7 +31,7 @@ health = Tag.create!(tag: 'health')
   Tag.create!(tag: FFaker::Movie.title)
 end
 
-zombie.followers << human
+human.followers << zombie
 derek.followers << human
 derek.followers << zombie
 

@@ -1,4 +1,9 @@
 class SocialUser < ActiveRecord::Base
+  self.inheritance_column = :role
+
+  scope :consumers, -> { where(role: 'Consumer') }
+  scope :producers, -> { where(role: 'Producer') }
+
   has_and_belongs_to_many :followers,
                           class_name: 'SocialUser',
                           foreign_key: :following_id,

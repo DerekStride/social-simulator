@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe SocialUser, type: :model do
   let(:coding) { build(:tag, tag: 'coding') }
   let(:netflix) { build(:tag, tag: 'netflix') }
-  let(:zombie) { build(:social_user, name: 'Zombie') }
+  let(:zombie) { build(:consumer, name: 'Zombie') }
   let(:human) do
-    build(:social_user,
+    build(:producer,
           name: 'Human',
           tags: [coding, netflix],
           followers: [zombie])
@@ -26,6 +26,20 @@ RSpec.describe SocialUser, type: :model do
   describe '#followers' do
     it 'returns the list of followers for the users' do
       expect(human.followers).to eq [zombie]
+    end
+  end
+
+  describe '#producers' do
+    it 'returns the list of all producers' do
+      human.save!
+      expect(SocialUser.producers).to eq [human]
+    end
+  end
+
+  describe '#consumers' do
+    it 'returns the list of all consumers' do
+      zombie.save!
+      expect(SocialUser.consumers).to eq [zombie]
     end
   end
 end
