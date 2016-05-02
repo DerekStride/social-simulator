@@ -31,10 +31,29 @@ health = Tag.create!(tag: 'health')
   Tag.create!(tag: FFaker::Movie.title)
 end
 
-human.followers << zombie
-derek.followers << human
-derek.followers << zombie
+photo = Content.create!(name: 'Pretty Photo', producer: human)
+document = Content.create!(name: 'Formal Report', producer: human)
+
+1250.times do
+  Content.create!(name: FFaker::HipsterIpsum.word, producer: Producer.order('RANDOM()').limit(1).first)
+end
+
+# Adding tags to models
+
+document.tags << coding
+photo.tags << netflix << health
 
 derek.tags << coding << health << netflix
 zombie.tags << health
 human.tags << netflix
+
+# Adding followers
+
+human.followers << zombie
+derek.followers << human
+derek.followers << zombie
+
+# Adding likes
+
+photo.likes << zombie
+document.likes << derek << human

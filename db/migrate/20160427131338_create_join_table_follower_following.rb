@@ -1,6 +1,6 @@
 class CreateJoinTableFollowerFollowing < ActiveRecord::Migration
   def change
-    create_table :follower_following do |t|
+    create_table :follower_following, id: false do |t|
       t.integer :follower_id
       t.integer :following_id
     end

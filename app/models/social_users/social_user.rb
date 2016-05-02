@@ -14,5 +14,7 @@ class SocialUser < ActiveRecord::Base
                           foreign_key: :follower_id,
                           association_foreign_key: :following_id,
                           join_table: :follower_following
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :liked_content, class_name: 'Content'
+  has_many :taggings, as: :tagable
+  has_many :tags, as: :tagable, through: :taggings
 end

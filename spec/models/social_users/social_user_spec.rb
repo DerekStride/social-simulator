@@ -3,13 +3,16 @@ require 'rails_helper'
 RSpec.describe SocialUser, type: :model do
   let(:coding) { build(:tag, tag: 'coding') }
   let(:netflix) { build(:tag, tag: 'netflix') }
+  let(:photo) { build(:content, name: 'Pretty Photo') }
   let(:zombie) { build(:consumer, name: 'Zombie') }
   let(:human) do
     build(:producer,
           name: 'Human',
           tags: [coding, netflix],
+          liked_content: [photo],
           followers: [zombie])
   end
+
 
   describe '#name' do
     it 'returns the users name' do
@@ -40,6 +43,12 @@ RSpec.describe SocialUser, type: :model do
     it 'returns the list of all consumers' do
       zombie.save!
       expect(SocialUser.consumers).to eq [zombie]
+    end
+  end
+
+  describe '#liked_content' do
+    it 'returns the list of content liked by the user' do
+      expect(human.liked_content).to eq [photo]
     end
   end
 end

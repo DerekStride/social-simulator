@@ -1,3 +1,5 @@
 class Tag < ActiveRecord::Base
-  has_and_belongs_to_many :users, class_name: 'SocialUser'
+  has_many :taggings
+  has_many :contents, through: :taggings, source: :tagable, source_type: 'Content'
+  has_many :users, through: :taggings, source: :tagable, source_type: 'SocialUser'
 end
