@@ -22,6 +22,8 @@ module SocialSimulator
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.autoload_paths += %W(#{config.root}/app/models/social_users)
+    config.autoload_paths += %W(#{config.root}/app/models/social_user)
+    config.autoload_paths += %W(#{config.root}/app/models/search_strategy)
+    config.autoload_paths += %W(#{config.root}/app/models/social_strategy)
   end
 end

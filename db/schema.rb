@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 20160501235206) do
   create_table "social_users", force: :cascade do |t|
     t.string   "name"
     t.string   "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "social_strategy"
+    t.string   "search_strategy"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "taggings", id: false, force: :cascade do |t|

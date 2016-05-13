@@ -3,6 +3,8 @@ class CreateSocialUsers < ActiveRecord::Migration
     create_table :social_users do |t|
       t.string :name
       t.string :role
+      t.string :social_strategy
+      t.string :search_strategy
 
       t.timestamps null: false
     end
