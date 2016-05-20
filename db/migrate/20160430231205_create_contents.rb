@@ -3,6 +3,7 @@ class CreateContents < ActiveRecord::Migration
     create_table :contents do |t|
       t.string :name
       t.references :producer
+      t.references :simulation
 
       t.timestamps null: false
     end

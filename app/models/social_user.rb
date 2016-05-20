@@ -17,4 +17,5 @@ class SocialUser < ActiveRecord::Base
   has_and_belongs_to_many :liked_content, class_name: 'Content'
   has_many :taggings, as: :tagable
   has_many :tags, as: :tagable, through: :taggings
+  belongs_to :simulation
 end

@@ -8,31 +8,33 @@
 
 require 'ffaker'
 
+simulation = Simulation.create!
+
 roles = %w(Consumer Producer)
 
-derek = Consumer.create!(name: 'Derek Stride')
-human = Producer.create!(name: 'Human')
-zombie = Consumer.create!(name: 'Zombie')
+derek = Consumer.create!(name: 'Derek Stride', simulation: simulation)
+human = Producer.create!(name: 'Human', simulation: simulation)
+zombie = Consumer.create!(name: 'Zombie', simulation: simulation)
 1000.times do
-  SocialUser.create!(name: FFaker::Name.name, role: roles.sample)
+  SocialUser.create!(name: FFaker::Name.name, role: roles.sample, simulation: simulation)
 end
 
-coding = Tag.create!(tag: 'coding')
-netflix = Tag.create!(tag: 'netflix')
-health = Tag.create!(tag: 'health')
+coding = Tag.create!(tag: 'coding', simulation: simulation)
+netflix = Tag.create!(tag: 'netflix', simulation: simulation)
+health = Tag.create!(tag: 'health', simulation: simulation)
 
 100.times do
-  Tag.create!(tag: FFaker::Skill.specialty)
-  Tag.create!(tag: FFaker::Skill.tech_skill)
-  Tag.create!(tag: FFaker::Sport.name)
-  Tag.create!(tag: FFaker::Product.product)
-  Tag.create!(tag: FFaker::Food.ingredient)
-  Tag.create!(tag: FFaker::Music.genre)
-  Tag.create!(tag: FFaker::Movie.title)
+  Tag.create!(tag: FFaker::Skill.specialty, simulation: simulation)
+  Tag.create!(tag: FFaker::Skill.tech_skill, simulation: simulation)
+  Tag.create!(tag: FFaker::Sport.name, simulation: simulation)
+  Tag.create!(tag: FFaker::Product.product, simulation: simulation)
+  Tag.create!(tag: FFaker::Food.ingredient, simulation: simulation)
+  Tag.create!(tag: FFaker::Music.genre, simulation: simulation)
+  Tag.create!(tag: FFaker::Movie.title, simulation: simulation)
 end
 
-photo = Content.create!(name: 'Pretty Photo', producer: human)
-document = Content.create!(name: 'Formal Report', producer: human)
+photo = Content.create!(name: 'Pretty Photo', producer: human, simulation: simulation)
+document = Content.create!(name: 'Formal Report', producer: human, simulation: simulation)
 
 1250.times do
   Content.create!(name: FFaker::HipsterIpsum.word, producer: Producer.order('RANDOM()').limit(1).first)

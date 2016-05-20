@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501235206) do
+ActiveRecord::Schema.define(version: 20160519015245) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "name"
     t.integer  "producer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "simulation_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "contents_social_users", id: false, force: :cascade do |t|
@@ -36,11 +37,17 @@ ActiveRecord::Schema.define(version: 20160501235206) do
   add_index "follower_following", ["follower_id", "following_id"], name: "index_follower_following_on_follower_id_and_following_id", unique: true
   add_index "follower_following", ["following_id", "follower_id"], name: "index_follower_following_on_following_id_and_follower_id", unique: true
 
+  create_table "simulations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "social_users", force: :cascade do |t|
     t.string   "name"
     t.string   "role"
     t.string   "social_strategy"
     t.string   "search_strategy"
+    t.integer  "simulation_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -59,8 +66,9 @@ ActiveRecord::Schema.define(version: 20160501235206) do
 
   create_table "tags", force: :cascade do |t|
     t.string   "tag"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "simulation_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end

@@ -1,0 +1,27 @@
+  <% if @simulation.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@simulation.errors.count, "error") %> prohibited
+        this simulation from being saved:
+      </h2>
+      <ul>
+        <% @simulation.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= select_tag :social_strategy, options_for_select(Simulation::SOCIAL_STRATEGIES), prompt: "Social strategy"%>
+  </p>
+
+  <p>
+    <%= select_tag :search_strategy, options_for_select(Simulation::SEARCH_STRATEGIES), prompt: "Search strategy"%>
+  </p>
+
+  <p>
+    <%= f.submit "Start"%>
+  </p>
+
+<% end %>

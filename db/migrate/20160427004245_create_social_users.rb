@@ -5,6 +5,7 @@ class CreateSocialUsers < ActiveRecord::Migration
       t.string :role
       t.string :social_strategy
       t.string :search_strategy
+      t.references :simulation
 
       t.timestamps null: false
     end
