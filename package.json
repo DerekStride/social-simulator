@@ -1,0 +1,22 @@
+{
+  "name": "social-simulator",
+  "version": "0.1.0",
+  "description": "A social network simulator.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:DerekStride/social-simulator.git"
+  },
+  "author": "Derek Stride",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DerekStride/social-simulator/issues"
+  },
+  "homepage": "https://github.com/DerekStride/social-simulator#readme",
+  "devDependencies": {
+    "eslint": "^2.11.1",
+    "eslint-config-google": "^0.5.0",
+    "eslint-plugin-lodash": "^1.9.2"
+  },
+  "dependencies": {
+  }
+}

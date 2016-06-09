@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "google"
+  ],
+  "env": {
+    "jquery": true,
+    "browser": true
+  },
+  "plugins": [
+    "lodash"
+  ],
+  "globals": {
+    "_": true
+  },
+  "rules": {
+    "max-len": [
+      2,
+      {
+        "tabWidth": 2,
+        "ignoreUrls": true,
+        "ignoreTrailingComments": true
+      }
+    ]
+  }
+}

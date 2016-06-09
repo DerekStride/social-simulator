@@ -1,3 +1,40 @@
 // Place all the styles related to the simulations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$colSeparator: #eee;
+
+.simulation-quantity {
+  text-align: right;
+}
+
+#simulation-table tr {
+  border-bottom: 1px solid $colSeparator;
+}
+
+.simulation-next-row{
+  border-bottom: 1px solid $colSeparator;
+  padding-bottom: 16px;
+  width: 100%;
+}
+
+.simulation-next-row-button{
+  display: block;
+  margin: 0 auto;
+  height: 38px;
+  width: 42px;
+}
+
+.simulation-delete-row{ // required for js
+  display: block;
+  margin: 0 auto;
+  height: 38px;
+}
+
+.btn[disabled]{
+  cursor: default;
+}
+
+.simulation-buttons{
+  float: right;
+}

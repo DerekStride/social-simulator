@@ -5,4 +5,6 @@ class Simulation < ActiveRecord::Base
   has_many :users, class_name: 'SocialUser'
   has_many :tags
   has_many :content, class_name: 'Content'
+
+  accepts_nested_attributes_for :users
 end
