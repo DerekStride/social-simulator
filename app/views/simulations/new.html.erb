@@ -16,57 +16,64 @@
 
 <%= form_for @simulation do |f| %>
   <%= f.fields_for :users, @simulation.users do |ff| %>
-    <table class="table">
-      <thead class="thead-inverse">
-        <tr>
-          <th>Role</th>
-          <th>Search Strategy</th>
-          <th>Social Strategy</th>
-          <th>Quantity</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="simulation-table">
-        <tr>
-          <td>
-            <%= ff.select 'role', options_for_select(%w(Producer Consumer)),
-              { prompt: 'Role'  },
-              class: 'c-select',
-              required: true
-            %>
-          </td>
-          <td>
-            <%= ff.select 'search_strategy', options_for_select(Simulation::SEARCH_STRATEGIES),
-              { prompt: 'Search strategy'  },
-              class: 'c-select',
-              required: true
-            %>
-          </td>
-          <td>
-            <%= ff.select 'social_strategy', options_for_select(Simulation::SOCIAL_STRATEGIES),
-              { prompt: 'Social strategy'  },
-              class: 'c-select',
-              required: true
-            %>
-          </td>
-          <td>
-            <%= number_field_tag 'simulation[users_attributes][0][quantity]', '',
-              placeholder: 1,
-              min: 1,
-              class: 'form-control simulation-quantity',
-              required: true
-            %>
-          </td>
-          <td>
-            <button type="button" class="btn btn-danger simulation-delete-row" onclick="deleteRow(event)">
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="simulation-next-row">
-      <a class="btn btn-secondary simulation-next-row-button">+</a>
+    <div data-define="{table: new SimulationTable(this)}" data-context="table">
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Role</th>
+            <th>Search Strategy</th>
+            <th>Social Strategy</th>
+            <th>Quantity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="simulation_table">
+          <tr id="row_1">
+            <td>
+              <%= ff.select 'role', options_for_select(%w(Producer Consumer)),
+                { prompt: 'Role'  },
+                class: 'c-select',
+                required: true
+              %>
+            </td>
+            <td>
+              <%= ff.select 'search_strategy', options_for_select(Simulation::SEARCH_STRATEGIES),
+                { prompt: 'Search strategy'  },
+                class: 'c-select',
+                required: true
+              %>
+            </td>
+            <td>
+              <%= ff.select 'social_strategy', options_for_select(Simulation::SOCIAL_STRATEGIES),
+                { prompt: 'Social strategy'  },
+                class: 'c-select',
+                required: true
+              %>
+            </td>
+            <td>
+              <%= number_field_tag 'simulation[users_attributes][0][quantity]', '',
+                placeholder: 1,
+                min: 1,
+                class: 'form-control simulation-quantity',
+                required: true
+              %>
+            </td>
+            <td>
+              <%= button_tag 'Delete',
+                type: 'button',
+                id: 'delete_row_1',
+                class: 'btn btn-danger simulation-delete-row disabled',
+                data: { bind_event_click: 'deleteTableRow(this)' }
+              %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <%= button_tag '+',
+        type: 'button',
+        class: 'btn btn-secondary simulation-next-row simulation-next-row-button',
+        data: { bind_event_click: 'addTableRow()' }
+      %>
     </div>
     <br/><br/>
   <% end %>

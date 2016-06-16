@@ -15,4 +15,17 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require lodash
+//= require twine
 //= require_tree .
+
+var context = {};
+
+document.addEventListener('page:change', function() {
+  Twine.reset(context).bind().refresh();
+  return;
+});
+
+Twine.shouldDiscardEvent.click = function(event) {
+  $target = $(event.target);
+  return $target.hasClass('disabled');
+}
