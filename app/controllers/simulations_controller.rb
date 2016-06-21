@@ -56,6 +56,8 @@ class SimulationsController < ApplicationController
   end
 
   def simulation_params
-    params.require(:simulation).permit(users_attributes: [:role, :search_strategy, :social_strategy, :quantity])
+    params.require(:simulation).permit(
+      users_attributes: [:role, :search_strategy, :social_strategy, :quantity],
+      tags_attributes: [:quantity, :avg, :stddev])
   end
 end

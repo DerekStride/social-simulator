@@ -17,7 +17,6 @@ class SimulationTable {
   }
 
   addTableRow() {
-    var tableBody = document.getElementById('simulation_table');
     var row = this.table.children[this.table.children.length - 1];
     var rowCopy = row.cloneNode(true);
     var id = _.now();

@@ -14,6 +14,10 @@
   </div>
 <% end %>
 
+<div id="simulation_users">
+  <h2>Users</h2>
+</div>
+
 <%= form_for @simulation do |f| %>
   <%= f.fields_for :users, @simulation.users do |ff| %>
     <div data-define="{table: new SimulationTable(this)}" data-context="table">
@@ -75,8 +79,48 @@
         data: { bind_event_click: 'addTableRow()' }
       %>
     </div>
-    <br/><br/>
   <% end %>
+  <hr>
+
+  <div id="simulation_tags">
+    <h2>Tags</h2>
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Quantity</th>
+          <th>Average Per User</th>
+          <th>Standard Deviation</th>
+        </tr>
+      </thead>
+      <tbody id="simulation_table">
+        <tr>
+          <td>
+            <%= number_field_tag 'simulation[tags_attributes][quantity]', '',
+              placeholder: 100,
+              min: 10,
+              class: 'form-control simulation-quantity',
+              required: true %>
+          </td>
+          <td>
+            <%= number_field_tag 'simulation[tags_attributes][avg]', '',
+              placeholder: 10,
+              min: 1,
+              class: 'form-control simulation-quantity',
+              required: true %>
+          </td>
+          <td>
+            <%= number_field_tag 'simulation[tags_attributes][stddev]', '',
+              placeholder: 2,
+              min: 1,
+              class: 'form-control simulation-quantity',
+              required: true %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
   <div class="simulation-buttons">
     <%= f.submit 'Start', class: 'btn btn-primary' %>
     <%= link_to 'Back', simulations_path, class: 'btn btn-secondary' %>
