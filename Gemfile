@@ -14,6 +14,7 @@ gem 'lodash-rails'
 gem 'sprockets'
 gem 'sprockets-es6', require: 'sprockets/es6'
 gem 'twine-rails'
+gem 'rubystats'
 
 group :development, :test do
   gem 'byebug'

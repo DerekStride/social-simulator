@@ -14,8 +14,7 @@ class SimulationsController < ApplicationController
   end
 
   def create
-    @simulation = Simulation.create
-    simulate
+    @simulation = Simulation.simulate(simulation_params)
 
     respond_to do |format|
       if @simulation.save
@@ -37,19 +36,6 @@ class SimulationsController < ApplicationController
   end
 
   private
-
-  def simulate
-    simulation_params['users_attributes'].each do |_, config|
-      config['quantity'].to_i.times do
-        config['role'].constantize.create(
-          name: FFaker::Name.name,
-          simulation_id: @simulation.id,
-          search_strategy: "#{config['search_strategy'].capitalize}SearchStrategy".constantize,
-          social_strategy: "#{config['social_strategy'].capitalize}SocialStrategy".constantize
-        )
-      end
-    end
-  end
 
   def set_simulation
     @simulation = Simulation.find(params[:id])

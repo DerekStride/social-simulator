@@ -105,6 +105,7 @@
             <%= number_field_tag 'simulation[tags_attributes][avg]', '',
               placeholder: 10,
               min: 1,
+              step: :any,
               class: 'form-control simulation-quantity',
               required: true %>
           </td>
@@ -112,6 +113,7 @@
             <%= number_field_tag 'simulation[tags_attributes][stddev]', '',
               placeholder: 2,
               min: 1,
+              step: :any,
               class: 'form-control simulation-quantity',
               required: true %>
           </td>
